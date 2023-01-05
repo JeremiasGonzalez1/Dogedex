@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.jeredev.dogedex.Dog
+import com.jeredev.dogedex.api.response.Dog
 import com.jeredev.dogedex.databinding.DogListItemBinding
 
 class DogAdapter : ListAdapter<Dog, DogAdapter.DogViewHolder>(DiffCallback) {
@@ -17,7 +17,6 @@ class DogAdapter : ListAdapter<Dog, DogAdapter.DogViewHolder>(DiffCallback) {
         override fun areContentsTheSame(oldItem: Dog, newItem: Dog): Boolean {
             return oldItem.id == newItem.id
         }
-
     }
 
 

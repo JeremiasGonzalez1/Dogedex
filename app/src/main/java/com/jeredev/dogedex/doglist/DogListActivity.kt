@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.jeredev.dogedex.Dog
 import com.jeredev.dogedex.databinding.ActivityDogListBinding
 
 class DogListActivity : AppCompatActivity() {
@@ -23,9 +22,6 @@ class DogListActivity : AppCompatActivity() {
 
         dogListViewModel.dogList.observe(this){
             adapter.submitList(it)
-
         }
-
-        recyclerView.adapter = adapter
     }
 }
