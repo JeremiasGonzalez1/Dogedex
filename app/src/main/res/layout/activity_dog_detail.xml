@@ -6,7 +6,7 @@
 
         <variable
             name="dog"
-            type="com.hackaprende.dogedex.Dog" />
+            type="com.jeredev.dogedex.api.response.Dog" />
     </data>
 
     <FrameLayout
@@ -63,7 +63,7 @@
                         android:fontFamily="sans-serif-medium"
                         android:gravity="center"
                         android:padding="8dp"
-                        android:text="@{dog.name}"
+                        android:text="@{dog.temperament}"
                         android:textColor="@color/text_black"
                         android:textSize="32sp"
                         tools:text="Tiny Poodle" />
@@ -199,7 +199,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:text="@{dog.type}"
+                                android:text="@{dog.name}"
                                 tools:text="Hound" />
 
                             <TextView
@@ -251,7 +251,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
-                                android:text="@{dog.heightMale}"
+                                android:text="@{dog.type}"
                                 tools:text="37 - 40 cm" />
 
                             <TextView
