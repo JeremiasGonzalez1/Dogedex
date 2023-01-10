@@ -21,7 +21,7 @@ class DogListActivity : AppCompatActivity() {
         val binding = ActivityDogListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val loadingWheel= binding.loadingWheel
+        val loadingWheel = binding.loadingWheel
         val recyclerView = binding.rvDogs
 
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -40,19 +40,14 @@ class DogListActivity : AppCompatActivity() {
 
         dogListViewModel.status.observe(this) { status ->
             when (status) {
-                ApiResponseStatus.LOADING -> {loadingWheel.visibility = View.VISIBLE
-                }
-
-                ApiResponseStatus.SUCCESS -> {loadingWheel.visibility = View.GONE
-                }
-                ApiResponseStatus.ERROR -> {
-                    Toast.makeText(this, "Error al descargar datos", Toast.LENGTH_SHORT).show()
+                is ApiResponseStatus.Error -> {
+                    Toast.makeText(this, status.message, Toast.LENGTH_SHORT).show()
                     loadingWheel.visibility = View.GONE
                 }
-                else -> {
-                    Toast.makeText(this, "Estatus desconocido", Toast.LENGTH_SHORT).show()
-                }
+                is ApiResponseStatus.Loading -> loadingWheel.visibility = View.VISIBLE
+                is ApiResponseStatus.Success -> loadingWheel.visibility = View.GONE
             }
+
         }
 
     }
