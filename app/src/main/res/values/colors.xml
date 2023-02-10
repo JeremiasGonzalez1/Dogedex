@@ -34,4 +34,6 @@
 
     <color name="colorSecondaryDark">#0C1D8A</color>
 
+    <color name="light_gray">#BCBCBC</color>
+
 </resources>

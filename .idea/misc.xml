@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Jeremias/AndroidStudioProjects/Dogedex/app/src/main/res/drawable/detail_info_background.xml" value="0.1085" />
+        <entry key="..\:/Users/Jeremias/AndroidStudioProjects/Dogedex/app/src/main/res/drawable/dog_list_item_background.xml" value="0.1" />
         <entry key="..\:/Users/Jeremias/AndroidStudioProjects/Dogedex/app/src/main/res/drawable/ic_check_black.xml" value="0.1085" />
         <entry key="..\:/Users/Jeremias/AndroidStudioProjects/Dogedex/app/src/main/res/drawable/ic_heart_white.xml" value="0.1085" />
         <entry key="..\:/Users/Jeremias/AndroidStudioProjects/Dogedex/app/src/main/res/drawable/progressbar_background.xml" value="0.1085" />
@@ -11,11 +12,11 @@
         <entry key="..\:/Users/Jeremias/AndroidStudioProjects/Dogedex/app/src/main/res/layout/activity_dog_detail.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jeremias/AndroidStudioProjects/Dogedex/app/src/main/res/layout/activity_dog_list.xml" value="0.21388888888888888" />
         <entry key="..\:/Users/Jeremias/AndroidStudioProjects/Dogedex/app/src/main/res/layout/activity_main.xml" value="0.21388888888888888" />
-        <entry key="..\:/Users/Jeremias/AndroidStudioProjects/Dogedex/app/src/main/res/layout/dog_list_item.xml" value="0.264" />
+        <entry key="..\:/Users/Jeremias/AndroidStudioProjects/Dogedex/app/src/main/res/layout/dog_list_item.xml" value="0.1" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
