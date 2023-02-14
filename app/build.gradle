@@ -33,6 +33,9 @@ android {
     buildFeatures {
         dataBinding true
     }
+    buildFeatures{
+        viewBinding true
+    }
 
 }
 
@@ -53,5 +56,9 @@ dependencies {
 
     //coil https://coil-kt.github.io/coil/
     implementation"io.coil-kt:coil:2.2.2"
+
+    //navigation
+    implementation("androidx.navigation:navigation-fragment-ktx:2.5.3")
+    implementation("androidx.navigation:navigation-ui-ktx:2.5.3")
 
 }

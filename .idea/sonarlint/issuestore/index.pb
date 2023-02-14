@@ -1,6 +1,4 @@
 
-e
-5app/src/main/java/com/jeredev/dogedex/MainActivity.kt,d\5\d5477734289899c1dd918cb486883faf5e8abdfa
 g
 7app/src/main/java/com/jeredev/dogedex/api/ApiService.kt,3\8\38bff2c9ffab0b3cf9703d162c945f8d9fd676fe
 q
