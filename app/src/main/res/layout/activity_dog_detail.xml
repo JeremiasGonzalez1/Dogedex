@@ -6,7 +6,7 @@
 
         <variable
             name="dog"
-            type="com.jeredev.dogedex.api.response.Dog" />
+            type="com.jeredev.dogedex.model.Dog" />
     </data>
 
     <FrameLayout

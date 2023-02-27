@@ -5,9 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jeredev.dogedex.api.response.ApiResponseStatus
-import com.jeredev.dogedex.api.response.Dog
+import com.jeredev.dogedex.model.Dog
 import kotlinx.coroutines.launch
-import java.lang.Exception
 
 
 class DogListViewModel : ViewModel() {

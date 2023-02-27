@@ -1,5 +1,6 @@
 package com.jeredev.dogedex.auth
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Patterns
 import androidx.fragment.app.Fragment
@@ -11,6 +12,20 @@ import com.jeredev.dogedex.databinding.FragmentSingUpBinding
 
 
 class SingUpFragment : Fragment() {
+    interface SingUpFragmentActions {
+        fun onFieldsValidated(email: String, password: String, repeatPassword: String)
+    }
+
+    lateinit var singUpFragmentActions: SingUpFragmentActions
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        singUpFragmentActions = try {
+            context as SingUpFragmentActions
+        } catch (e: java.lang.ClassCastException) {
+            throw ClassCastException("$context must implement Login Fragment first")
+        }
+    }
 
     lateinit var binding: FragmentSingUpBinding
 
@@ -60,7 +75,7 @@ class SingUpFragment : Fragment() {
             return
         }
 
-        //sing Up
+        singUpFragmentActions.onFieldsValidated(email, password, passwordRepeat)
     }
 
     private fun isValidEmail(email: String): Boolean {
