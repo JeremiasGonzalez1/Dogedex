@@ -18,4 +18,5 @@
     <string name="error_sign_up">Error singing up</string>
     <string name="error_sign_in">Error loging in</string>
     <string name="error_user_already_exists">User already exists</string>
+    <string name="there_was_an_error">There was  an error</string>
 </resources>
