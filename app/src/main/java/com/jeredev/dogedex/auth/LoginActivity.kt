@@ -56,6 +56,10 @@ class LoginActivity : AppCompatActivity(), LoginFragment.LoginFragmentActions,
         findNavController(R.id.nav_host_fragment).navigate(R.id.action_loginFragment_to_singUpFragment)
     }
 
+    override fun onLoginFieldsValidated(email: String, password: String) {
+        viewModel.login(email, password)
+    }
+
     override fun onFieldsValidated(email: String, password: String, repeatPassword: String) {
         viewModel.singUp(email, password, repeatPassword)
     }
