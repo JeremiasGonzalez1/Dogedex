@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.jeredev.dogedex.auth.LoginActivity
 import com.jeredev.dogedex.databinding.ActivityMainBinding
+import com.jeredev.dogedex.doglist.DogListActivity
 import com.jeredev.dogedex.model.User
 import com.jeredev.dogedex.settings.SettingsActivity
 
@@ -23,6 +24,14 @@ class MainActivity : AppCompatActivity() {
         binding.settingsFab.setOnClickListener {
             openSettingsActivity()
         }
+
+        binding.dogListFab.setOnClickListener{
+            openListDogs()
+        }
+    }
+
+    private fun openListDogs() {
+        startActivity(Intent(this, DogListActivity::class.java))
     }
 
     private fun openSettingsActivity() {
