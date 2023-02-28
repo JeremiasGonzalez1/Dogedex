@@ -3,6 +3,7 @@ package com.jeredev.dogedex
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.jeredev.dogedex.api.ApiServiceInterceptor
 import com.jeredev.dogedex.auth.LoginActivity
 import com.jeredev.dogedex.databinding.ActivityMainBinding
 import com.jeredev.dogedex.doglist.DogListActivity
@@ -19,13 +20,15 @@ class MainActivity : AppCompatActivity() {
         if (user == null) {
             openLoginActivity()
             return
+        } else {
+            ApiServiceInterceptor.setSessionToken(user.token)
         }
 
         binding.settingsFab.setOnClickListener {
             openSettingsActivity()
         }
 
-        binding.dogListFab.setOnClickListener{
+        binding.dogListFab.setOnClickListener {
             openListDogs()
         }
     }

@@ -3,16 +3,12 @@
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
 @
 app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
-g
-7app/src/main/java/com/jeredev/dogedex/api/ApiService.kt,3\8\38bff2c9ffab0b3cf9703d162c945f8d9fd676fe
 u
 Eapp/src/main/java/com/jeredev/dogedex/api/response/AuthApiResponse.kt,7\9\79dfa1ef53e24e737846ab33171fdb8c5da1abf2
 l
 <app/src/main/java/com/jeredev/dogedex/auth/AuthRepository.kt,c\d\cdf43c737f43cd29111686e6c46d6098aa830299
 k
 ;app/src/main/java/com/jeredev/dogedex/auth/AuthViewModel.kt,8\d\8de6ddb5053fc3d52b5f362f6f0c06c4fd433de3
-b
-2app/src/main/java/com/jeredev/dogedex/Constants.kt,9\2\9270630150b4a7d039827a0470ecde0f359fd123
 i
 9app/src/main/java/com/jeredev/dogedex/api/dto/LoginDTO.kt,e\5\e5b2cc4e2b80d920eb6b4c45cbfc68dcd94abef6
 k
@@ -23,8 +19,6 @@ l
 .app/src/main/java/com/jeredev/dogedex/Utils.kt,f\f\ff3093c9bb094b07f3719b66d41ddb2317aed744
 j
 :app/src/main/java/com/jeredev/dogedex/api/dto/SingUpDTO.kt,4\7\476304fb1c90346a580c82c8bdc6e4729e9d81ba
-l
-<app/src/main/java/com/jeredev/dogedex/api/makeNetWorkCall.kt,1\d\1d71bfaefa1253e343c2ac74456b79db8ff181f0
 m
 =app/src/main/java/com/jeredev/dogedex/api/dto/DogDTOMapper.kt,2\8\28b6fb4aad1e7ff19c539cc4207880a84abd0e15
 n
