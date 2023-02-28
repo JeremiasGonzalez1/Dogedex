@@ -12,8 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Dogedex">
         <activity
+            android:name=".settings.SettingsActivity"
+            android:exported="false" />
+        <activity
             android:name=".auth.LoginActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".dogdetail.DogDetailActivity"
             android:exported="false" />

@@ -39,5 +39,12 @@ class User(
                 ) ?: "", token = sharedPreferences.getString(AUTH_TOKEN_KEY, "") ?: ""
             )
         }
+
+        fun logout(activity: Activity) {
+            val sharedPreferences =
+                activity.getSharedPreferences(AUTH_SHARED_PREFERENCES, Context.MODE_PRIVATE).also {
+                    it.edit().clear().apply()
+                }
+        }
     }
 }
