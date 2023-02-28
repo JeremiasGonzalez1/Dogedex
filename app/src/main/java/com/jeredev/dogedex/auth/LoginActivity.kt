@@ -12,6 +12,7 @@ import com.jeredev.dogedex.MainActivity
 import com.jeredev.dogedex.R
 import com.jeredev.dogedex.api.response.ApiResponseStatus
 import com.jeredev.dogedex.databinding.ActivityLoginBinding
+import com.jeredev.dogedex.model.User
 
 class LoginActivity : AppCompatActivity(), LoginFragment.LoginFragmentActions,
     SingUpFragment.SingUpFragmentActions {
@@ -33,14 +34,15 @@ class LoginActivity : AppCompatActivity(), LoginFragment.LoginFragmentActions,
         }
         viewModel.user.observe(this) { user ->
             if (user != null) {
+                User.setLoggedInUser(this, user)
                 startMainActivity()
-
             }
         }
     }
 
     private fun startMainActivity() {
         startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 
     private fun showErrorDialog(message: Int) {
