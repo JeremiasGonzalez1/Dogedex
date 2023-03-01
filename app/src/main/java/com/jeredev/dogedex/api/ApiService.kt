@@ -1,13 +1,10 @@
 package com.jeredev.dogedex.api
 
-import com.jeredev.dogedex.ADD_DOG_TO_USER_URL
-import com.jeredev.dogedex.BASE_URL
-import com.jeredev.dogedex.SIGN_IN_URL
-import com.jeredev.dogedex.SING_UP_URL
+import com.jeredev.dogedex.*
 import com.jeredev.dogedex.api.dto.AddDogToUserDTO
 import com.jeredev.dogedex.api.dto.LoginDTO
 import com.jeredev.dogedex.api.dto.SingUpDTO
-import com.jeredev.dogedex.api.response.DogResponse
+import com.jeredev.dogedex.api.response.DogListResponse
 import com.jeredev.dogedex.api.response.AuthApiResponse
 import com.jeredev.dogedex.api.response.DefaultResponse
 import okhttp3.OkHttpClient
@@ -24,8 +21,8 @@ private val retrofit = Retrofit
     .addConverterFactory(MoshiConverterFactory.create()).build()
 
 interface ApiService {
-    @GET("dogs")
-    suspend fun getAllDogs(): DogResponse
+    @GET(GET_ALL_DOGS)
+    suspend fun getAllDogs(): DogListResponse
 
     @POST(SING_UP_URL)
     suspend fun singUp(@Body singUpDTO: SingUpDTO): AuthApiResponse
@@ -36,6 +33,10 @@ interface ApiService {
     @Headers("${ApiServiceInterceptor.NEEDS_AUTH_HEADER_KEY}: true")
     @POST(ADD_DOG_TO_USER_URL)
     suspend fun addDogToUser(@Body addDogToUserDTO: AddDogToUserDTO): DefaultResponse
+
+    @Headers("${ApiServiceInterceptor.NEEDS_AUTH_HEADER_KEY}: true")
+    @GET(GET_USER_DOGS_URL)
+    suspend fun getUserDogs(): DogListResponse
 }
 
 object DogsApi {

@@ -21,7 +21,7 @@ class DogListViewModel : ViewModel() {
         get() = _status
 
     init {
-        downloadDogs()
+       downloadUserDogs()
     }
 
     fun addDogToUser(dogId: Int) {
@@ -51,5 +51,12 @@ class DogListViewModel : ViewModel() {
             downloadDogs()
         }
         _status.value = apiResponseStatus
+    }
+
+    private fun downloadUserDogs() {
+        viewModelScope.launch {
+            _status.value = ApiResponseStatus.Loading()
+            handleResponseStatus(repository.getUserDogs())
+        }
     }
 }
