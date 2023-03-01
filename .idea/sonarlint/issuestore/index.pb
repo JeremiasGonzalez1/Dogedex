@@ -19,8 +19,6 @@ l
 .app/src/main/java/com/jeredev/dogedex/Utils.kt,f\f\ff3093c9bb094b07f3719b66d41ddb2317aed744
 j
 :app/src/main/java/com/jeredev/dogedex/api/dto/SingUpDTO.kt,4\7\476304fb1c90346a580c82c8bdc6e4729e9d81ba
-m
-=app/src/main/java/com/jeredev/dogedex/api/dto/DogDTOMapper.kt,2\8\28b6fb4aad1e7ff19c539cc4207880a84abd0e15
 n
 >app/src/main/java/com/jeredev/dogedex/api/dto/UserDTOMapper.kt,1\d\1d41ebc45dbf89a5cc248eda68e4a969aaa3c03d
 h
