@@ -16,7 +16,7 @@ class DogRepository {
             dogDTOMapper.fromDogDTOListToDogDomainList(dogDTOList)
         }
 
-    suspend fun addDogToUser(dogID: String): ApiResponseStatus<Any> = makeNetWorkCall {
+    suspend fun addDogToUser(dogID: Int): ApiResponseStatus<Any> = makeNetWorkCall {
         val addDogToUserDTO = AddDogToUserDTO(dogID)
         val defaultResponse = retrofitService.addDogToUser(addDogToUserDTO)
 
