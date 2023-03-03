@@ -1,6 +1,14 @@
 
 <
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
+u
+Eapp/src/main/java/com/jeredev/dogedex/api/response/AuthApiResponse.kt,7\9\79dfa1ef53e24e737846ab33171fdb8c5da1abf2
+l
+<app/src/main/java/com/jeredev/dogedex/auth/AuthRepository.kt,c\d\cdf43c737f43cd29111686e6c46d6098aa830299
+k
+;app/src/main/java/com/jeredev/dogedex/auth/AuthViewModel.kt,8\d\8de6ddb5053fc3d52b5f362f6f0c06c4fd433de3
+i
+9app/src/main/java/com/jeredev/dogedex/api/dto/LoginDTO.kt,e\5\e5b2cc4e2b80d920eb6b4c45cbfc68dcd94abef6
 l
 <app/src/main/java/com/jeredev/dogedex/auth/SingUpFragment.kt,c\3\c33731486b043567f08deb259c29533097e762f5
 ^
@@ -15,7 +23,3 @@ p
 @app/src/main/java/com/jeredev/dogedex/doglist/DogListActivity.kt,5\e\5e5a820eac1c2e070de14e3b91478705bc80b33c
 n
 >app/src/main/java/com/jeredev/dogedex/doglist/DogRepository.kt,8\4\84e9a8a7df95818e966aed603cf8de7b651ce021
-l
-<app/src/main/java/com/jeredev/dogedex/auth/AuthRepository.kt,c\d\cdf43c737f43cd29111686e6c46d6098aa830299
-k
-;app/src/main/java/com/jeredev/dogedex/auth/AuthViewModel.kt,8\d\8de6ddb5053fc3d52b5f362f6f0c06c4fd433de3
