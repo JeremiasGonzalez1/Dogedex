@@ -3,8 +3,11 @@ package com.jeredev.dogedex.doglist
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,49 +16,32 @@ import com.jeredev.dogedex.api.response.ApiResponseStatus
 import com.jeredev.dogedex.databinding.ActivityDogListBinding
 import com.jeredev.dogedex.dogdetail.DogDetailActivity
 import com.jeredev.dogedex.dogdetail.DogDetailActivity.Companion.DOG_KEY
+import com.jeredev.dogedex.jetpackcompose.detaildog.DogDetailComposeActivity
+import com.jeredev.dogedex.jetpackcompose.ui.theme.DogedexTheme
+import com.jeredev.dogedex.model.Dog
 
 private const val GRID_SPAN_COUNT = 3
-class DogListActivity : AppCompatActivity() {
 
-    private val dogListViewModel: DogListViewModel by viewModels()
+class DogListActivity : ComponentActivity() {
+
+    private val viewModel: DogListViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityDogListBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        val loadingWheel = binding.loadingWheel
-        val recyclerView = binding.rvDogs
-        recyclerView.layoutManager = GridLayoutManager(this, GRID_SPAN_COUNT)
-
-
-        val adapter = DogAdapter()
-        adapter.setOnItemClickListener {
-            val intent = Intent(this, DogDetailActivity::class.java)
-            intent.putExtra(DOG_KEY, it)
-            startActivity(intent)
-        }
-
-        adapter.setOnLongItemClickListener {
-            dogListViewModel.addDogToUser(it.id)
-        }
-
-        recyclerView.adapter = adapter
-        dogListViewModel.dogList.observe(this) {
-            adapter.submitList(it)
-        }
-
-        dogListViewModel.status.observe(this) { status ->
-            when (status) {
-                is ApiResponseStatus.Error -> {
-                    Toast.makeText(this, status.message, Toast.LENGTH_SHORT).show()
-                    loadingWheel.visibility = View.GONE
-                }
-                is ApiResponseStatus.Loading -> loadingWheel.visibility = View.VISIBLE
-                is ApiResponseStatus.Success -> loadingWheel.visibility = View.GONE
+        setContent {
+            DogedexTheme {
+                val listDog = listOf<Dog>()
+                DogListScreen(
+                    viewModel.dogList.value,
+                    onItemClickListener = ::openDogDetailActivity
+                )
             }
-
         }
+    }
 
+    private fun openDogDetailActivity(dog: Dog) {
+        val intent = Intent(this, DogDetailComposeActivity::class.java)
+        intent.putExtra(DogDetailComposeActivity.DOG_KEY, dog)
+        startActivity(intent)
     }
 }

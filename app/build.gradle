@@ -6,6 +6,9 @@ plugins {
 
 android {
     compileSdk 33
+    task prepareKotlinBuildScriptModel {
+
+    }
 
     defaultConfig {
         applicationId "com.jeredev.dogedex"
@@ -15,6 +18,9 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
     }
 
     buildTypes {
@@ -33,8 +39,17 @@ android {
     buildFeatures {
         dataBinding true
     }
-    buildFeatures{
+    buildFeatures {
         viewBinding true
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.2.0'
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
     }
 
 }
@@ -45,6 +60,11 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
+    implementation 'androidx.activity:activity-compose:1.3.1'
+    implementation "androidx.compose.ui:ui:$compose_ui_version"
+    implementation "androidx.compose.ui:ui-tooling-preview:$compose_ui_version"
+    implementation 'androidx.compose.material:material:1.2.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
@@ -55,7 +75,13 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-moshi:2.9.0'
 
     //coil https://coil-kt.github.io/coil/
-    implementation"io.coil-kt:coil:2.2.2"
+    implementation "io.coil-kt:coil:2.2.2"
+    //coil Compose
+    implementation ("io.coil-kt:coil-compose:2.0.0")
+    //icons
+    implementation 'androidx.compose.material:material-icons-extended:1.3.1'
+    implementation 'androidx.compose.material:material-icons-core:1.3.1'
+
 
     //navigation
     implementation("androidx.navigation:navigation-fragment-ktx:2.5.3")
@@ -66,8 +92,15 @@ dependencies {
     implementation "androidx.camera:camera-lifecycle:1.2.1"
     implementation "androidx.camera:camera-view:1.2.1"
 
-    //tensorFlow Lite
-    implementation 'org.tensorFlow:tensorFlow-lite:0.0.0-nightly-SNAPSHOT'
-    implementation 'org.tensorFlow:tensorFlow-lite:support:0.1.0'
+
+// Tensorflow Lite dependencies
+    implementation 'org.tensorflow:tensorflow-lite-task-vision-play-services:0.4.2'
+    implementation 'com.google.android.gms:play-services-tflite-gpu:16.1.0'
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_ui_version"
+    debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
+    debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
+
+    //compose Navigation
+    implementation "androidx.navigation:navigation-compose:2.5.3"
 
 }

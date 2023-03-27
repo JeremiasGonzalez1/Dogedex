@@ -13,6 +13,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Dogedex">
         <activity
+            android:name=".dogdetail.DogDetailActivity"
+            android:exported="false"
+            android:label="@string/title_activity_dog_detail"
+            android:theme="@style/Theme.Dogedex" />
+        <activity
+            android:name=".jetpackcompose.detaildog.DogDetailComposeActivity"
+            android:exported="false"
+            android:label="@string/title_activity_dog_detail_compose"
+            android:theme="@style/Theme.Dogedex" />
+        <activity
+            android:name=".jetpackcompose.DogsJetpackComposeActivity"
+            android:exported="false"
+            android:label="@string/title_activity_dogs_jetpack_compose"
+            android:theme="@style/Theme.Dogedex" />
+        <activity
             android:name=".WholeImageActivity"
             android:exported="false" />
         <activity
@@ -21,9 +36,6 @@
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".auth.LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".dogdetail.DogDetailActivity"
             android:exported="false" />
         <activity
             android:name=".doglist.DogListActivity"

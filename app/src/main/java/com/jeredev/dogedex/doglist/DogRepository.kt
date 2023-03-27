@@ -13,10 +13,27 @@ import kotlinx.coroutines.withContext
 
 class DogRepository {
 
+    suspend fun getAllDogsCollection(): ApiResponseStatus<List<Dog>> {
+        return withContext(Dispatchers.IO) {
+            val getAlldogsResponseDeferred = downloadDogs()
+            when (getAlldogsResponseDeferred) {
+                is ApiResponseStatus.Error -> {
+                    ApiResponseStatus.Error(R.string.unknown_error)
+                }
+                is ApiResponseStatus.Success -> {
+                    ApiResponseStatus.Success(getAlldogsResponseDeferred.data)
+                }
+                is ApiResponseStatus.Loading->{
+                    ApiResponseStatus.Loading()
+                }
+            }
+        }
+    }
+
     suspend fun getDogCollection(): ApiResponseStatus<List<Dog>> {
         return withContext(Dispatchers.IO) {
-            val allDogsListResponseDeferred = async { downloadDogs()}
-            val userDogListResponseDeferred = async { getUserDogs()}
+            val allDogsListResponseDeferred = async { downloadDogs() }
+            val userDogListResponseDeferred = async { getUserDogs() }
 
             val allDogsListResponse = allDogsListResponseDeferred.await()
             val userDogListResponse = userDogListResponseDeferred.await()
@@ -60,7 +77,7 @@ class DogRepository {
             dogDTOMapper.fromDogDTOListToDogDomainList(dogDTOList)
         }
 
-     suspend fun addDogToUser(dogID: Int): ApiResponseStatus<Any> = makeNetWorkCall {
+    suspend fun addDogToUser(dogID: Int): ApiResponseStatus<Any> = makeNetWorkCall {
         val addDogToUserDTO = AddDogToUserDTO(dogID)
         val defaultResponse = retrofitService.addDogToUser(addDogToUserDTO)
 

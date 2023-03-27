@@ -59,12 +59,12 @@ class DogAdapter : ListAdapter<Dog, DogAdapter.DogViewHolder>(DiffCallback) {
                     dogListItemLayout.setOnClickListener {
                         onItemClickListener?.invoke(dog)
                     }
+                    dogImage.load(dog.heightMale)
+                } else {
                     dogListItemLayout.setOnLongClickListener {
                         onLongItemClickListener?.invoke(dog)
                         true
                     }
-                    dogImage.load(dog.heightMale)
-                } else {
                     dogImage.visibility = View.GONE
                     dogIndex.visibility = View.VISIBLE
                     dogIndex.text= dog.index.toString()
