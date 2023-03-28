@@ -1,5 +1,6 @@
 package com.jeredev.dogedex.auth
 
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,32 +16,35 @@ class AuthViewModel : ViewModel() {
 
     private val authRepository = AuthRepository()
 
-    private val _user = MutableLiveData<User>()
-    val user: LiveData<User>
-        get() = _user
+    var user = mutableStateOf<User?>(null)
+        private set
 
-    private val _status = MutableLiveData<ApiResponseStatus<User>>()
-    val status: LiveData<ApiResponseStatus<User>>
-        get() = _status
+
+    var status = mutableStateOf<ApiResponseStatus<User>?>(null)
+        private set
 
     fun singUp(email: String, password: String, passwordRepeat: String) {
         viewModelScope.launch {
-            _status.value = ApiResponseStatus.Loading()
+            status.value = ApiResponseStatus.Loading()
             handleResponseStatus(authRepository.singUp(email, password, passwordRepeat))
         }
     }
 
     fun login(email: String, password: String) {
         viewModelScope.launch {
-            _status.value = ApiResponseStatus.Loading()
+            status.value = ApiResponseStatus.Loading()
             handleResponseStatus(authRepository.login(email, password))
         }
     }
 
     private fun handleResponseStatus(apiResponseStatus: ApiResponseStatus<User>) {
         if (apiResponseStatus is ApiResponseStatus.Success) {
-            _user.value = apiResponseStatus.data!!
+            user.value = apiResponseStatus.data!!
         }
-        _status.value = apiResponseStatus
+        status.value = apiResponseStatus
+    }
+
+    fun resetApiResponseStatus() {
+        status.value = null
     }
 }

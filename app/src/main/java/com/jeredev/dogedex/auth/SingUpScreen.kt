@@ -20,7 +20,32 @@ import com.jeredev.dogedex.composables.DogTopAppBarWithArrowBack
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun SingUpScreen(onNavigationBack: () -> Unit) {
+fun SingUpScreen(
+    onNavigationBackClicked: () -> Unit, onRegisterButtonClick: (
+        email: String,
+        password: String,
+        passwordConfirmation: String
+    ) -> Unit
+) {
+    Scaffold(
+        topBar = {
+            DogTopAppBarWithArrowBack(
+                text = stringResource(R.string.register), onClick = onNavigationBackClicked
+            )
+        }
+    ) {
+        Content(onRegisterButtonClick = onRegisterButtonClick)
+    }
+}
+
+@Composable
+private fun Content(
+    onRegisterButtonClick: (
+        email: String,
+        password: String,
+        passwordConfirmation: String
+    ) -> Unit
+) {
     val email = remember {
         mutableStateOf("")
     }
@@ -30,24 +55,6 @@ fun SingUpScreen(onNavigationBack: () -> Unit) {
     val repeatPassword = remember {
         mutableStateOf("")
     }
-    Scaffold(
-        topBar = {
-            DogTopAppBarWithArrowBack(
-                text = stringResource(R.string.register),
-                onClick = onNavigationBack
-            )
-        }
-    ) {
-        Content(email, password, repeatPassword)
-    }
-}
-
-@Composable
-private fun Content(
-    email: MutableState<String>,
-    password: MutableState<String>,
-    repeatPassword: MutableState<String>
-) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -86,7 +93,7 @@ private fun Content(
         )
 
         Button(
-            onClick = { },
+            onClick = { onRegisterButtonClick(email.value, password.value, repeatPassword.value) },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(end = 6.dp, start = 6.dp, top = 24.dp),

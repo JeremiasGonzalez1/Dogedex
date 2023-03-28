@@ -1,5 +1,6 @@
 package com.jeredev.dogedex.auth
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -19,15 +20,22 @@ import com.jeredev.dogedex.R
 import com.jeredev.dogedex.composables.AuthField
 import com.jeredev.dogedex.composables.DogTopAppBar
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun LoginScreen() {
+fun LoginScreen(onRegisterButtonClick: () -> Unit, onLoginButtonClick: (String, String) -> Unit) {
     Scaffold(topBar = { DogTopAppBar(text = stringResource(R.string.top_app_bar_login)) }) {
-        Content()
+        Content(
+            onRegisterButtonClick = onRegisterButtonClick,
+            onLoginButtonClick = onLoginButtonClick
+        )
     }
 }
 
 @Composable
-private fun Content() {
+private fun Content(
+    onRegisterButtonClick: () -> Unit,
+    onLoginButtonClick: (String, String) -> Unit
+) {
     val email = remember {
         mutableStateOf("")
     }
@@ -66,7 +74,7 @@ private fun Content() {
         )
 
         Button(
-            onClick = {},
+            onClick = { onLoginButtonClick(email.value, password.value) },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 24.dp, start = 6.dp, end = 6.dp),
@@ -84,7 +92,7 @@ private fun Content() {
         )
 
         Button(
-            onClick = {},
+            onClick = { onRegisterButtonClick() },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 24.dp, start = 6.dp, end = 6.dp),

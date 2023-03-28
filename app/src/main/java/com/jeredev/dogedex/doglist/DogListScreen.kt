@@ -1,5 +1,6 @@
 package com.jeredev.dogedex.doglist
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -34,6 +35,7 @@ import com.jeredev.dogedex.model.Dog
 
 private const val GRID_SPAN_COUNT = 3
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @ExperimentalMaterialApi
 @Composable
 fun DogListScreen(
