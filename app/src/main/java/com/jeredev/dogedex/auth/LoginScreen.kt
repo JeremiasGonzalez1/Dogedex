@@ -13,7 +13,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.jeredev.dogedex.R
@@ -22,7 +21,11 @@ import com.jeredev.dogedex.composables.DogTopAppBar
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun LoginScreen(onRegisterButtonClick: () -> Unit, onLoginButtonClick: (String, String) -> Unit) {
+fun LoginScreen(
+    onRegisterButtonClick: () -> Unit,
+    onLoginButtonClick: (String, String) -> Unit,
+    viewModel: AuthViewModel
+) {
     Scaffold(topBar = { DogTopAppBar(text = stringResource(R.string.top_app_bar_login)) }) {
         Content(
             onRegisterButtonClick = onRegisterButtonClick,

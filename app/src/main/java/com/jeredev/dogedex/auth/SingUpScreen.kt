@@ -4,13 +4,11 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
@@ -25,7 +23,8 @@ fun SingUpScreen(
         email: String,
         password: String,
         passwordConfirmation: String
-    ) -> Unit
+    ) -> Unit,
+    viewModel: AuthViewModel
 ) {
     Scaffold(
         topBar = {
@@ -34,7 +33,9 @@ fun SingUpScreen(
             )
         }
     ) {
-        Content(onRegisterButtonClick = onRegisterButtonClick)
+        Content(onRegisterButtonClick = onRegisterButtonClick, viewModel, resetFieldErrors = {
+            viewModel.resetErrors()
+        })
     }
 }
 
@@ -44,7 +45,9 @@ private fun Content(
         email: String,
         password: String,
         passwordConfirmation: String
-    ) -> Unit
+    ) -> Unit,
+    viewModel: AuthViewModel,
+    resetFieldErrors: () -> Unit
 ) {
     val email = remember {
         mutableStateOf("")
@@ -55,6 +58,7 @@ private fun Content(
     val repeatPassword = remember {
         mutableStateOf("")
     }
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -65,31 +69,42 @@ private fun Content(
         AuthField(
             label = stringResource(id = R.string.email),
             email = email.value,
-            onTextChanged = { email.value = it },
+            onTextChanged = {
+                email.value = it
+                resetFieldErrors()
+            },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 6.dp, end = 6.dp)
+                .padding(start = 6.dp, end = 6.dp),
+            errorMessageId = viewModel.emailError.value
         )
 
         AuthField(
             label = stringResource(id = R.string.password),
             email = password.value,
-            onTextChanged = { password.value = it },
+            onTextChanged = {
+                password.value = it
+                resetFieldErrors()
+            },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 6.dp, end = 6.dp, top = 24.dp),
-            visualTransformation = PasswordVisualTransformation()
+            visualTransformation = PasswordVisualTransformation(),
+            errorMessageId = viewModel.passwordError.value
         )
 
         AuthField(
             label = stringResource(id = R.string.repeat_password),
             email = repeatPassword.value,
-            onTextChanged = { repeatPassword.value = it },
+            onTextChanged = {
+                repeatPassword.value = it
+                resetFieldErrors()
+            },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 6.dp, end = 6.dp, top = 24.dp),
-            visualTransformation = PasswordVisualTransformation()
-
+            visualTransformation = PasswordVisualTransformation(),
+            errorMessageId = viewModel.confirmPasswordError.value
         )
 
         Button(

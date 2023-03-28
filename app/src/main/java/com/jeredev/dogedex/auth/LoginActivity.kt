@@ -45,7 +45,8 @@ class LoginActivity : ComponentActivity() {
                             password,
                             passwordConfirmation
                         )
-                    }
+                    },
+                    viewModel = viewModel
                 )
             }
         }

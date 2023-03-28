@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.jeredev.dogedex.R
 import com.jeredev.dogedex.api.response.ApiResponseStatus
 import com.jeredev.dogedex.model.Dog
 import com.jeredev.dogedex.model.User
@@ -19,14 +20,40 @@ class AuthViewModel : ViewModel() {
     var user = mutableStateOf<User?>(null)
         private set
 
+    var emailError = mutableStateOf<Int?>(null)
+        private set
+
+    var passwordError = mutableStateOf<Int?>(null)
+        private set
+
+    var confirmPasswordError = mutableStateOf<Int?>(null)
+        private set
+
 
     var status = mutableStateOf<ApiResponseStatus<User>?>(null)
         private set
 
     fun singUp(email: String, password: String, passwordRepeat: String) {
-        viewModelScope.launch {
-            status.value = ApiResponseStatus.Loading()
-            handleResponseStatus(authRepository.singUp(email, password, passwordRepeat))
+        when {
+            email.isEmpty() -> {
+                emailError.value = R.string.email_is_not_valid
+            }
+            password.isEmpty() -> {
+                passwordError.value = R.string.password_must_not_be_empty
+            }
+            passwordRepeat.isEmpty() -> {
+                confirmPasswordError.value = R.string.password_must_not_be_empty
+            }
+            password != passwordRepeat -> {
+                passwordError.value = R.string.password_do_not_match
+                confirmPasswordError.value = R.string.password_do_not_match
+            }
+            else -> {
+                viewModelScope.launch {
+                    status.value = ApiResponseStatus.Loading()
+                    handleResponseStatus(authRepository.singUp(email, password, passwordRepeat))
+                }
+            }
         }
     }
 
@@ -47,4 +74,11 @@ class AuthViewModel : ViewModel() {
     fun resetApiResponseStatus() {
         status.value = null
     }
+
+    fun resetErrors() {
+        emailError.value = null
+        passwordError.value = null
+        confirmPasswordError.value = null
+    }
+
 }
