@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jeredev.dogedex.R
@@ -20,8 +21,8 @@ import com.jeredev.dogedex.jetpackcompose.detaildog.DogDetailComposeActivity
 import com.jeredev.dogedex.jetpackcompose.ui.theme.DogedexTheme
 import com.jeredev.dogedex.model.Dog
 
-private const val GRID_SPAN_COUNT = 3
 
+@ExperimentalMaterialApi
 class DogListActivity : ComponentActivity() {
 
     private val viewModel: DogListViewModel by viewModels()
@@ -29,14 +30,22 @@ class DogListActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            val status = viewModel.status
             DogedexTheme {
                 val listDog = listOf<Dog>()
                 DogListScreen(
                     viewModel.dogList.value,
-                    onItemClickListener = ::openDogDetailActivity
+                    onItemClickListener = ::openDogDetailActivity,
+                    onNavigationBack = ::onNavigationBack,
+                    status = status.value,
+                    onErrorDialogDismiss = ::resetApiResponseStatus
                 )
             }
         }
+    }
+
+    private fun onNavigationBack() {
+        finish()
     }
 
     private fun openDogDetailActivity(dog: Dog) {
@@ -44,4 +53,9 @@ class DogListActivity : ComponentActivity() {
         intent.putExtra(DogDetailComposeActivity.DOG_KEY, dog)
         startActivity(intent)
     }
+
+    private fun resetApiResponseStatus() {
+        viewModel.resetApiResponseStatus()
+    }
+
 }

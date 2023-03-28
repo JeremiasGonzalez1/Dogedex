@@ -24,6 +24,8 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.jeredev.dogedex.R
 import com.jeredev.dogedex.api.response.ApiResponseStatus
+import com.jeredev.dogedex.composables.ErrorDialog
+import com.jeredev.dogedex.composables.LoadingWheel
 import com.jeredev.dogedex.model.Dog
 
 @Composable
@@ -66,20 +68,10 @@ fun DogDetailScreen(
             LoadingWheel()
         } else if (status is ApiResponseStatus.Error) {
             ErrorDialog(
-                status,
+                status.message,
                 onDialogDismiss = onErrorDialogDismiss
             )
         }
-    }
-}
-
-@Composable
-fun LoadingWheel() {
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        CircularProgressIndicator(color = colorResource(id = R.color.color_primary))
     }
 }
 
@@ -251,29 +243,6 @@ private fun ColumInfo(modifier: Modifier, dog: Dog) {
         )
 
     }
-}
-
-@Composable
-fun ErrorDialog(
-    status: ApiResponseStatus.Error<Any>,
-    onDialogDismiss: () -> Unit
-) {
-    AlertDialog(
-        onDismissRequest = {},
-        title = {
-            Text(text = stringResource(R.string.error_dialog_tittle))
-        },
-        text = {
-            Text(
-                stringResource(id = status.message)
-            )
-        },
-        confirmButton = {
-            Button(onClick = { onDialogDismiss() }) {
-                Text(text = stringResource(R.string.try_again_alert_dialog))
-            }
-        }
-    )
 }
 
 @Composable

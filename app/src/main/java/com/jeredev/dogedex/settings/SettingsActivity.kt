@@ -3,11 +3,13 @@ package com.jeredev.dogedex.settings
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.compose.material.ExperimentalMaterialApi
 import com.jeredev.dogedex.R
 import com.jeredev.dogedex.auth.LoginActivity
 import com.jeredev.dogedex.databinding.ActivitySettingsBinding
 import com.jeredev.dogedex.model.User
 
+@ExperimentalMaterialApi
 class SettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

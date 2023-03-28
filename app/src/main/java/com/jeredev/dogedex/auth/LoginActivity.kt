@@ -5,22 +5,33 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.navigation.findNavController
 import com.jeredev.dogedex.MainActivity
 import com.jeredev.dogedex.R
 import com.jeredev.dogedex.api.response.ApiResponseStatus
 import com.jeredev.dogedex.databinding.ActivityLoginBinding
+import com.jeredev.dogedex.jetpackcompose.ui.theme.DogedexTheme
 import com.jeredev.dogedex.model.User
 
-class LoginActivity : AppCompatActivity(), LoginFragment.LoginFragmentActions,
+@ExperimentalMaterialApi
+class LoginActivity : ComponentActivity(), LoginFragment.LoginFragmentActions,
     SingUpFragment.SingUpFragmentActions {
 
     private val viewModel: AuthViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContent {
+            DogedexTheme {
+                //LoginScreen()
+                SingUpScreen(onNavigationBack = ::navigateBack)
+            }
+        }
+        /*val binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         viewModel.status.observe(this) {
             when (it) {
@@ -37,7 +48,11 @@ class LoginActivity : AppCompatActivity(), LoginFragment.LoginFragmentActions,
                 User.setLoggedInUser(this, user)
                 startMainActivity()
             }
-        }
+        }*/
+    }
+
+    private fun navigateBack() {
+        setContent { LoginScreen() }
     }
 
     private fun startMainActivity() {
